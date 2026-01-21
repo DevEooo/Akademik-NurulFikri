@@ -1,0 +1,1 @@
+- [x] Edit app/Providers/Filament/AdminPanelProvider.php to add ->loginRedirectUrl('/admin') after ->login()
