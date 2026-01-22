@@ -1,4 +1,0 @@
-- [x] Update User model to include 'role' in fillable
-- [x] Add navigation group 'Civitas' to UserResource
-- [x] Implement UserForm with name, email, password, role fields
-- [x] Implement UsersTable with name, email, role columns and role filter

@@ -11,7 +11,7 @@ class UserForm
     public static function configure(Schema $schema): Schema
     {
         return $schema
-            ->components([
+            ->schema([
                 TextInput::make('name')
                     ->required()
                     ->maxLength(255),

@@ -20,7 +20,7 @@ class KRSResource extends Resource
     protected static ?string $model = KRS::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
     protected static ?string $navigationLabel = 'Kartu Rencana Studi (KRS)';
-    protected static string | UnitEnum | null $navigationGroup = 'Akademik';
+    protected static UnitEnum|string|null $navigationGroup = 'Akademik';
     public static function form(Schema $schema): Schema
     {
         return KRSForm::configure($schema);

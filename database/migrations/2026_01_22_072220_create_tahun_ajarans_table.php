@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('program_studis', function (Blueprint $table) {
+        Schema::create('tahun_ajarans', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_prodi')->unique();
-            $table->enum('nama_prodi', ['Sistem Informasi', 'Teknik Informatika', 'Bisnis Digital']);
+            $table->string('tahun');
+            $table->string('semester');
+            $table->boolean('is_active')->default(false);
+            $table->timestamps();
         });
     }
 
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('program_studis');
+        Schema::dropIfExists('tahun_ajarans');
     }
 };
