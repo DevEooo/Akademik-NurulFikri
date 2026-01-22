@@ -17,7 +17,7 @@ use UnitEnum;
 
 class JadwalKuliahResource extends Resource
 {
-    // protected static ?string $model = JadwalKuliah::class;
+    protected static ?string $model = JadwalKuliah::class;
     protected static string | UnitEnum | null $navigationGroup = 'Akademik';
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 

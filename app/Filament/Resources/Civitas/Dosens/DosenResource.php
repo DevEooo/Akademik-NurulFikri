@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Civitas\Resources\Dosens;
+namespace App\Filament\Resources\Civitas\Dosens;
 
 use App\Filament\Resources\Civitas\Dosens\Pages\CreateDosen;
 use App\Filament\Resources\Civitas\Dosens\Pages\EditDosen;
@@ -17,7 +17,7 @@ use Filament\Tables\Table;
 
 class DosenResource extends Resource
 {
-    // protected static ?string $model = Dosen::class;
+    protected static ?string $model = Dosen::class;
     protected static string | UnitEnum | null $navigationGroup = 'Civitas';
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 

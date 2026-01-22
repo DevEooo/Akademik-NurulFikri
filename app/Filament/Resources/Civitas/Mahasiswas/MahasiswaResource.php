@@ -17,7 +17,7 @@ use Filament\Tables\Table;
 
 class MahasiswaResource extends Resource
 {
-    // protected static ?string $model = Mahasiswa::class;
+    protected static ?string $model = Mahasiswa::class;
     protected static string | UnitEnum | null $navigationGroup = 'Civitas';
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 

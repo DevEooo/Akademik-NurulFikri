@@ -17,7 +17,7 @@ use Filament\Tables\Table;
 
 class ProgramStudiResource extends Resource
 {
-    // protected static ?string $model = ProgramStudi::class;
+    protected static ?string $model = ProgramStudi::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
     protected static string | UnitEnum | null $navigationGroup = 'Master Data';
     public static function form(Schema $schema): Schema

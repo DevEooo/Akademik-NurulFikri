@@ -17,7 +17,7 @@ use Filament\Tables\Table;
 
 class PengumumanResource extends Resource
 {
-    // protected static ?string $model = Pengumuman::class;
+    protected static ?string $model = Pengumuman::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
     protected static string | UnitEnum | null $navigationGroup = 'Konten Website';
     public static function form(Schema $schema): Schema

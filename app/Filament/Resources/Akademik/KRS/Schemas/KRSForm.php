@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Filament\Resources\Akademik\KSRS\Schemas;
+namespace App\Filament\Resources\Akademik\KRS\Schemas;
 
 use Filament\Schemas\Schema;
 
-class KSRForm
+class KRSForm
 {
     public static function configure(Schema $schema): Schema
     {

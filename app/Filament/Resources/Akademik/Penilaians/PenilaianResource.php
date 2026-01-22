@@ -17,7 +17,7 @@ use Filament\Tables\Table;
 
 class PenilaianResource extends Resource
 {
-    // protected static ?string $model = Penilaian::class;
+    protected static ?string $model = Penilaian::class;
     protected static string | UnitEnum | null $navigationGroup = 'Akademik';
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 

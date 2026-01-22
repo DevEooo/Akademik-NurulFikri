@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\Akademik\KSRS\Pages;
+namespace App\Filament\Resources\Civitas\Users\Pages;
 
-use App\Filament\Resources\Akademik\KSRS\KSRResource;
+use App\Filament\Resources\Civitas\Users\UserResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
-class ListKSRS extends ListRecords
+class ListUsers extends ListRecords
 {
-    protected static string $resource = KSRResource::class;
+    protected static string $resource = UserResource::class;
 
     protected function getHeaderActions(): array
     {

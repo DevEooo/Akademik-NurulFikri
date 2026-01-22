@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\Akademik\KSRS\Pages;
+namespace App\Filament\Resources\Civitas\Users\Pages;
 
-use App\Filament\Resources\Akademik\KSRS\KSRResource;
+use App\Filament\Resources\Civitas\Users\UserResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 
-class EditKSR extends EditRecord
+class EditUser extends EditRecord
 {
-    protected static string $resource = KSRResource::class;
+    protected static string $resource = UserResource::class;
 
     protected function getHeaderActions(): array
     {

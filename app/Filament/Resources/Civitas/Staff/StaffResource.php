@@ -17,8 +17,8 @@ use Filament\Tables\Table;
 
 class StaffResource extends Resource
 {
-    // protected static ?string $model = Staff::class;
-    protected static string | UnitEnum | null $navigationGroup = 'Akademik';
+    protected static ?string $model = Staff::class;
+    protected static string | UnitEnum | null $navigationGroup = 'Civitas';
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     public static function form(Schema $schema): Schema
