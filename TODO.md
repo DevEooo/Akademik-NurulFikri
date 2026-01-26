@@ -1,13 +1,12 @@
-- [x] Remove canViewAny from app/Filament/Resources/Civitas/Dosens/DosenResource.php
-- [x] Remove canViewAny from app/Filament/Resources/Civitas/Staff/StaffResource.php
-- [x] Remove canViewAny from app/Filament/Resources/Civitas/Users/UserResource.php
-- [x] Remove canViewAny from app/Filament/Resources/Civitas/Mahasiswas/MahasiswaResource.php
-- [x] Remove canViewAny from app/Filament/Resources/Akademik/JadwalKuliahs/JadwalKuliahResource.php
-- [x] Remove canViewAny from app/Filament/Resources/Akademik/MataKuliahs/MataKuliahResource.php
-- [x] Remove canViewAny from app/Filament/Resources/Akademik/Penilaians/PenilaianResource.php
-- [x] Remove canViewAny from app/Filament/Resources/Akademik/KRS/KRSResource.php
-- [x] Remove canViewAny from app/Filament/Resources/MasterData/ProgramStudis/ProgramStudiResource.php
-- [x] Remove canViewAny from app/Filament/Resources/MasterData/Ruangans/RuanganResource.php
-- [x] Remove canViewAny from app/Filament/Resources/MasterData/TahunAjarans/TahunAjaranResource.php
-- [x] Remove canViewAny from app/Filament/Resources/KontenWebsite/Pengumuman/PengumumanResource.php
-- [x] Test the integration by logging into different panels
+# JadwalKuliah Resource Improvement
+
+## Completed Tasks
+- [x] Update JadwalKuliah.php model: Added relationships (tahunAjaran, mataKuliah, dosen, ruangan) and fillable fields.
+- [x] Update JadwalKuliahResource.php: Added imports for JadwalKuliahForm and JadwalKuliahsTable, and modified form() and table() methods to use them.
+- [x] Fix JadwalKuliahForm.php: Properly attached the room availability validation rule to jam_mulai TimePicker.
+- [x] Fix JadwalKuliahsTable.php: Corrected bulk actions placement.
+
+## Next Steps
+- Test the resource in the Filament admin panel to ensure create, edit, and list functionalities work correctly.
+- Verify that the validation prevents double-booking of rooms.
+- Check if any additional features are needed, such as better sorting or additional filters.

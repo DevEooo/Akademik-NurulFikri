@@ -4,15 +4,15 @@ namespace App\Filament\Resources\MasterData\TahunAjarans;
 
 use App\Filament\Resources\MasterData\TahunAjarans\Pages\CreateTahunAjaran;
 use App\Filament\Resources\MasterData\TahunAjarans\Pages\EditTahunAjaran;
-use App\Filament\Resources\MasterData\TahunAjarans\Pages\ListTahunAjarans;
+use App\Filament\Resources\MasterData\TahunAjarans\Pages\ListTahunAjaran;
 use App\Filament\Resources\MasterData\TahunAjarans\Schemas\TahunAjaranForm;
-use App\Filament\Resources\MasterData\TahunAjarans\Tables\TahunAjaransTable;
+use App\Filament\Resources\MasterData\TahunAjarans\Tables\TahunAjaranTable;
 use App\Models\TahunAjaran;
-use BackedEnum;
-use UnitEnum;
-use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use UnitEnum;
+use BackedEnum;
+use Filament\Resources\Resource;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,16 +20,18 @@ class TahunAjaranResource extends Resource
 {
     protected static ?string $model = TahunAjaran::class;
     protected static UnitEnum|string|null $navigationGroup = 'Master Data';
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::CalendarDays;
+    protected static ?string $label = "Tahun Ajaran";
+    protected static ?string $slug = "tahun-ajaran";
+    protected static BackedEnum|string|null $navigationIcon = Heroicon::OutlinedCalendar;
 
     public static function form(Schema $schema): Schema
     {
-        return TahunAjaranForm::configure($schema);
+        return TahunAjaranForm::form($schema);
     }
 
     public static function table(Table $table): Table
     {
-        return TahunAjaransTable::configure($table);
+        return TahunAjaranTable::table($table);
     }
 
     public static function getRelations(): array
@@ -42,7 +44,7 @@ class TahunAjaranResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListTahunAjarans::route('/'),
+            'index' => ListTahunAjaran::route('/'),
             'create' => CreateTahunAjaran::route('/create'),
             'edit' => EditTahunAjaran::route('/{record}/edit'),
         ];

@@ -5,6 +5,8 @@ namespace App\Filament\Resources\Akademik\JadwalKuliahs;
 use App\Filament\Resources\Akademik\JadwalKuliahs\Pages\CreateJadwalKuliah;
 use App\Filament\Resources\Akademik\JadwalKuliahs\Pages\EditJadwalKuliah;
 use App\Filament\Resources\Akademik\JadwalKuliahs\Pages\ListJadwalKuliahs;
+use App\Filament\Resources\Akademik\JadwalKuliahs\Schemas\JadwalKuliahForm;
+use App\Filament\Resources\Akademik\JadwalKuliahs\Tables\JadwalKuliahsTable;
 use App\Models\JadwalKuliah;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -18,28 +20,18 @@ class JadwalKuliahResource extends Resource
 {
     protected static ?string $model = JadwalKuliah::class;
     protected static UnitEnum|string|null $navigationGroup = 'Akademik';
-    // protected static ?string $label = "Jadwal Kuliah";
-    // protected static ?string $slug = "jadwal-kuliah-mahasiswa";
+    protected static ?string $label = "Jadwal Kuliah";
+    protected static ?string $slug = "jadwal-kuliah";
     protected static BackedEnum|string|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     public static function form(Schema $schema): Schema
     {
-        return $schema->schema([
-            //
-        ]);
+        return JadwalKuliahForm::form($schema);
     }
 
     public static function table(Table $table): Table
     {
-        return $table->columns([
-            //
-        ])->filters([
-            //
-        ])->actions([
-            //
-        ])->bulkActions([
-            //
-        ]);
+        return JadwalKuliahsTable::table($table);
     }
 
     public static function getRelations(): array
