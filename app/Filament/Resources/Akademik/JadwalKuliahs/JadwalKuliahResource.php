@@ -18,6 +18,8 @@ class JadwalKuliahResource extends Resource
 {
     protected static ?string $model = JadwalKuliah::class;
     protected static UnitEnum|string|null $navigationGroup = 'Akademik';
+    // protected static ?string $label = "Jadwal Kuliah";
+    // protected static ?string $slug = "jadwal-kuliah-mahasiswa";
     protected static BackedEnum|string|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     public static function form(Schema $schema): Schema

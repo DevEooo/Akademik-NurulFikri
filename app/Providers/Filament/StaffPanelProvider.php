@@ -28,9 +28,6 @@ class StaffPanelProvider extends PanelProvider
             ->id('staff')
             ->path('staff')
             ->login()
-            ->authMiddleware([
-                Authenticate::class, // Middleware standar
-            ])
             ->colors([
                 'primary' => Color::Red,
             ])

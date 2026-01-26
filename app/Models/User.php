@@ -27,16 +27,21 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         'password',
     ];
 
+    protected function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = strtolower($value);
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
         if ($this->hasRole('super_admin')) {
-            return True;
+            return true;
         }
 
         return match ($panel->getId()) {
-            'admin' => $this->hasRole('super_admin'), 
-            'staff' => $this->hasRole('staff'),
-            'dosen' => $this->hasRole('dosen'),
+            'admin' => $this->hasRole('super_admin'),
+            'staff' => $this->hasRole('staff') || $this->hasRole('Staff'),
+            'dosen' => $this->hasRole('dosen') || $this->hasRole('Dosen'),
             default => false,
         };
     }

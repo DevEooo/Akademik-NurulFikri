@@ -25,7 +25,6 @@ class UserForm
                     ->required(!$isEdit)
                     ->minLength(8)
                     ->revealable()
-                    ->dehydrateStateUsing(fn ($state) => filled($state) ? bcrypt($state) : null)
                     ->dehydrated(fn ($state) => filled($state)),
                 Select::make('role')
                     ->relationship('roles', 'name')
