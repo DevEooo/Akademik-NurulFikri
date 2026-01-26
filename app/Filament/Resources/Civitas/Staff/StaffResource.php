@@ -13,8 +13,7 @@ use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Table;
-
+use Filament\Tables\Table;use Illuminate\Support\Facades\Auth;
 class StaffResource extends Resource
 {
     protected static ?string $model = Staff::class;
@@ -46,4 +45,7 @@ class StaffResource extends Resource
             'edit' => EditStaff::route('/{record}/edit'),
         ];
     }
-}
+    public static function canAccess(): bool
+    {
+        return Auth::user()?->can('ViewAny:Staff') ?? false;
+    }}

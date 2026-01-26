@@ -14,12 +14,14 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class PengumumanResource extends Resource
 {
     protected static ?string $model = Pengumuman::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
     protected static string | UnitEnum | null $navigationGroup = 'Konten Website';
+
     public static function form(Schema $schema): Schema
     {
         return PengumumanForm::configure($schema);
@@ -44,5 +46,10 @@ class PengumumanResource extends Resource
             'create' => CreatePengumuman::route('/create'),
             'edit' => EditPengumuman::route('/{record}/edit'),
         ];
+    }
+
+    public static function canAccess(): bool
+    {
+        return Auth::user()?->can('ViewAny:Pengumuman') ?? false;
     }
 }

@@ -21,16 +21,22 @@ class UsersTable
                 TextColumn::make('email')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('role')
+                TextColumn::make('roles.name')
+                    ->label('Role')
                     ->badge()
-                    ->sortable(),
+                    ->separator(', ')
+                    ->formatStateUsing(fn ($state) => ucfirst(str_replace('_', ' ', $state)))
+                    ->getStateUsing(function ($record) {
+                        return $record->roles->pluck('name')->map(fn ($role) => ucfirst(str_replace('_', ' ', $role)))->join(', ');
+                    }),
             ])
             ->filters([
-                SelectFilter::make('role')
+                SelectFilter::make('roles')
+                    ->relationship('roles', 'name')
                     ->options([
-                        'Super Admin' => 'Super Admin',
-                        'User' => 'User',
-                        'Staff' => 'Staff',
+                        'super_admin' => 'Super Admin',
+                        'dosen' => 'Dosen',
+                        'staff' => 'Staff',
                     ]),
             ])
             ->recordActions([

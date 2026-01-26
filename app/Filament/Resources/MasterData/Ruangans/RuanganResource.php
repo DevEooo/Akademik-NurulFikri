@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class RuanganResource extends Resource
 {
@@ -46,5 +47,10 @@ class RuanganResource extends Resource
             'create' => CreateRuangan::route('/create'),
             'edit' => EditRuangan::route('/{record}/edit'),
         ];
+    }
+
+    public static function canAccess(): bool
+    {
+        return Auth::user()?->can('ViewAny:Ruangan') ?? false;
     }
 }

@@ -12,6 +12,7 @@ use UnitEnum;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class JadwalKuliahResource extends Resource
 {
@@ -53,5 +54,10 @@ class JadwalKuliahResource extends Resource
             'create' => CreateJadwalKuliah::route('/create'),
             'edit' => EditJadwalKuliah::route('/{record}/edit'),
         ];
+    }
+
+    public static function canAccess(): bool
+    {
+        return Auth::user()?->can('ViewAny:JadwalKuliah') ?? false;
     }
 }

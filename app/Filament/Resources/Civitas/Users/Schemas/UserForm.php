@@ -8,7 +8,7 @@ use Filament\Schemas\Schema;
 
 class UserForm
 {
-    public static function configure(Schema $schema): Schema
+    public static function configure(Schema $schema, bool $isEdit = false): Schema
     {
         return $schema
             ->schema([
@@ -22,16 +22,16 @@ class UserForm
                     ->maxLength(255),
                 TextInput::make('password')
                     ->password()
-                    ->required()
+                    ->required(!$isEdit)
                     ->minLength(8)
-                    ->revealable(),
+                    ->revealable()
+                    ->dehydrateStateUsing(fn ($state) => filled($state) ? bcrypt($state) : null)
+                    ->dehydrated(fn ($state) => filled($state)),
                 Select::make('role')
-                    ->options([
-                        'Super Admin' => 'Super Admin',
-                        'User' => 'User',
-                        'Staff' => 'Staff',
-                    ])
-                    ->required(),
+                    ->relationship('roles', 'name')
+                    ->multiple()
+                    ->preload()
+                    ->searchable()
             ]);
     }
 }

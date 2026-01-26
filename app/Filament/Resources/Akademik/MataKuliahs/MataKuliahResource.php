@@ -14,10 +14,11 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class MataKuliahResource extends Resource
 {
-    // protected static ?string $model = MataKuliah::class;
+    protected static ?string $model = MataKuliah::class;
     protected static UnitEnum|string|null $navigationGroup = 'Akademik';
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
@@ -45,5 +46,10 @@ class MataKuliahResource extends Resource
             'create' => CreateMataKuliah::route('/create'),
             'edit' => EditMataKuliah::route('/{record}/edit'),
         ];
+    }
+
+    public static function canAccess(): bool
+    {
+        return Auth::user()?->can('ViewAny:MataKuliah') ?? false;
     }
 }

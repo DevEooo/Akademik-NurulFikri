@@ -1,0 +1,13 @@
+- [x] Remove canViewAny from app/Filament/Resources/Civitas/Dosens/DosenResource.php
+- [x] Remove canViewAny from app/Filament/Resources/Civitas/Staff/StaffResource.php
+- [x] Remove canViewAny from app/Filament/Resources/Civitas/Users/UserResource.php
+- [x] Remove canViewAny from app/Filament/Resources/Civitas/Mahasiswas/MahasiswaResource.php
+- [x] Remove canViewAny from app/Filament/Resources/Akademik/JadwalKuliahs/JadwalKuliahResource.php
+- [x] Remove canViewAny from app/Filament/Resources/Akademik/MataKuliahs/MataKuliahResource.php
+- [x] Remove canViewAny from app/Filament/Resources/Akademik/Penilaians/PenilaianResource.php
+- [x] Remove canViewAny from app/Filament/Resources/Akademik/KRS/KRSResource.php
+- [x] Remove canViewAny from app/Filament/Resources/MasterData/ProgramStudis/ProgramStudiResource.php
+- [x] Remove canViewAny from app/Filament/Resources/MasterData/Ruangans/RuanganResource.php
+- [x] Remove canViewAny from app/Filament/Resources/MasterData/TahunAjarans/TahunAjaranResource.php
+- [x] Remove canViewAny from app/Filament/Resources/KontenWebsite/Pengumuman/PengumumanResource.php
+- [x] Test the integration by logging into different panels

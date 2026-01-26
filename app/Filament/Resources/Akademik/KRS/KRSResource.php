@@ -14,6 +14,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class KRSResource extends Resource
 {
@@ -21,6 +22,7 @@ class KRSResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
     protected static ?string $navigationLabel = 'Kartu Rencana Studi (KRS)';
     protected static UnitEnum|string|null $navigationGroup = 'Akademik';
+
     public static function form(Schema $schema): Schema
     {
         return KRSForm::configure($schema);
@@ -45,5 +47,10 @@ class KRSResource extends Resource
             'create' => CreateKRS::route('/create'),
             'edit' => EditKRS::route('/{record}/edit'),
         ];
+    }
+
+    public static function canAccess(): bool
+    {
+        return Auth::user()?->can('ViewAny:KRS') ?? false;
     }
 }

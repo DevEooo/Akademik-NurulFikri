@@ -14,12 +14,14 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class ProgramStudiResource extends Resource
 {
     protected static ?string $model = ProgramStudi::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
     protected static string | UnitEnum | null $navigationGroup = 'Master Data';
+
     public static function form(Schema $schema): Schema
     {
         return ProgramStudiForm::configure($schema);
@@ -44,5 +46,10 @@ class ProgramStudiResource extends Resource
             'create' => CreateProgramStudi::route('/create'),
             'edit' => EditProgramStudi::route('/{record}/edit'),
         ];
+    }
+
+    public static function canAccess(): bool
+    {
+        return Auth::user()?->can('ViewAny:ProgramStudi') ?? false;
     }
 }

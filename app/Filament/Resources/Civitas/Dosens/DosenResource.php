@@ -14,6 +14,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class DosenResource extends Resource
 {
@@ -45,5 +46,10 @@ class DosenResource extends Resource
             'create' => CreateDosen::route('/create'),
             'edit' => EditDosen::route('/{record}/edit'),
         ];
+    }
+
+    public static function canAccess(): bool
+    {
+        return Auth::user()?->can('ViewAny:Dosen') ?? false;
     }
 }
