@@ -9,4 +9,9 @@ class Dosen extends Model
 {
     use HasFactory;
     protected $table = 'dosen';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Staff extends Model
 {
     use HasFactory;
-    // protected $table = 'staff';
+    protected $table = 'staff';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

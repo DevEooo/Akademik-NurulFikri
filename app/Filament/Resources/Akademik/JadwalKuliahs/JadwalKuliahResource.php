@@ -22,7 +22,7 @@ class JadwalKuliahResource extends Resource
     protected static UnitEnum|string|null $navigationGroup = 'Akademik';
     protected static ?string $label = "Jadwal Kuliah";
     protected static ?string $slug = "jadwal-kuliah";
-    protected static BackedEnum|string|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static BackedEnum|string|null $navigationIcon = Heroicon::CalendarDateRange;
 
     public static function form(Schema $schema): Schema
     {
