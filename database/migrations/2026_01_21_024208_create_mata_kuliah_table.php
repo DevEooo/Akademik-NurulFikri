@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('mata_kuliah', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_program_studi')->constrained('program_studis');
+            $table->foreignId('id_program_studi')->constrained('program_studi');
             $table->string('kode_matkul')->unique();
             $table->string('nama_matkul');
             $table->integer('sks');
             $table->longText('deskripsi_matkul'); // Area Rich Text
+            $table->timestamps();
         });
     }
 

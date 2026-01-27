@@ -6,30 +6,32 @@ use App\Filament\Resources\Civitas\Mahasiswas\Pages\CreateMahasiswa;
 use App\Filament\Resources\Civitas\Mahasiswas\Pages\EditMahasiswa;
 use App\Filament\Resources\Civitas\Mahasiswas\Pages\ListMahasiswas;
 use App\Filament\Resources\Civitas\Mahasiswas\Schemas\MahasiswaForm;
-use App\Filament\Resources\Civitas\Mahasiswas\Tables\MahasiswasTable;
+use App\Filament\Resources\Civitas\Mahasiswas\Tables\MahasiswaTable;
 use App\Models\Mahasiswa;
-use BackedEnum;
-use UnitEnum;
-use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use UnitEnum;
+use BackedEnum;
+use Filament\Resources\Resource;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Auth;
 
 class MahasiswaResource extends Resource
 {
     protected static ?string $model = Mahasiswa::class;
-    protected static string | UnitEnum | null $navigationGroup = 'Civitas';
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static UnitEnum|string|null $navigationGroup = 'Civitas';
+    protected static ?string $label = "Mahasiswa";
+    protected static ?string $slug = "mahasiswa";
+    protected static BackedEnum|string|null $navigationIcon = Heroicon::OutlinedUsers;
 
     public static function form(Schema $schema): Schema
     {
-        return MahasiswaForm::configure($schema);
+        return MahasiswaForm::form($schema);
     }
 
     public static function table(Table $table): Table
     {
-        return MahasiswasTable::configure($table);
+        return MahasiswaTable::table($table);
     }
 
     public static function getRelations(): array

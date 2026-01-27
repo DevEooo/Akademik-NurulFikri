@@ -6,30 +6,32 @@ use App\Filament\Resources\Civitas\Dosens\Pages\CreateDosen;
 use App\Filament\Resources\Civitas\Dosens\Pages\EditDosen;
 use App\Filament\Resources\Civitas\Dosens\Pages\ListDosens;
 use App\Filament\Resources\Civitas\Dosens\Schemas\DosenForm;
-use App\Filament\Resources\Civitas\Dosens\Tables\DosensTable;
+use App\Filament\Resources\Civitas\Dosens\Tables\DosenTable;
 use App\Models\Dosen;
-use BackedEnum;
-use UnitEnum;
-use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use UnitEnum;
+use BackedEnum;
+use Filament\Resources\Resource;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Auth;
 
 class DosenResource extends Resource
 {
     protected static ?string $model = Dosen::class;
-    protected static string | UnitEnum | null $navigationGroup = 'Civitas';
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static UnitEnum|string|null $navigationGroup = 'Civitas';
+    protected static ?string $label = "Dosen";
+    protected static ?string $slug = "dosen";
+    protected static BackedEnum|string|null $navigationIcon = Heroicon::OutlinedUserGroup;
 
     public static function form(Schema $schema): Schema
     {
-        return DosenForm::configure($schema);
+        return DosenForm::form($schema);
     }
 
     public static function table(Table $table): Table
     {
-        return DosensTable::configure($table);
+        return DosenTable::table($table);
     }
 
     public static function getRelations(): array

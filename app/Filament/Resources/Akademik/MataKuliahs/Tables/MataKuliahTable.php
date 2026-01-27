@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Civitas\Staff\Tables;
+namespace App\Filament\Resources\Akademik\MataKuliahs\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -9,23 +9,30 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 
-class StaffTable
+class MataKuliahTable
 {
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('nip')
-                    ->label('NIP')
+                TextColumn::make('kode_matkul')
+                    ->label('Kode')
                     ->searchable(),
 
-                TextColumn::make('nama')
-                    ->label('Nama')
+                TextColumn::make('nama_matkul')
+                    ->label('Nama Mata Kuliah')
                     ->searchable(),
 
-                TextColumn::make('jabatan')
-                    ->badge()
-                    ->label('Jabatan'),
+                TextColumn::make('programStudi.nama_prodi')
+                    ->label('Program Studi'),
+
+                TextColumn::make('sks')
+                    ->label('SKS')
+                    ->numeric(),
+
+                TextColumn::make('deskripsi_matkul')
+                    ->label('Deskripsi')
+                    ->limit(50),
             ])
             ->actions([
                 EditAction::make(),

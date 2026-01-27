@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Civitas\Staff\Tables;
+namespace App\Filament\Resources\Civitas\Dosens\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -9,23 +9,25 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 
-class StaffTable
+class DosenTable
 {
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('nip')
-                    ->label('NIP')
+                TextColumn::make('nidn')
+                    ->label('NIDN')
                     ->searchable(),
 
-                TextColumn::make('nama')
-                    ->label('Nama')
+                TextColumn::make('nama_lengkap')
+                    ->label('Nama Lengkap')
                     ->searchable(),
 
-                TextColumn::make('jabatan')
-                    ->badge()
-                    ->label('Jabatan'),
+                TextColumn::make('email')
+                    ->label('Email'),
+
+                TextColumn::make('nomor_telepon')
+                    ->label('Nomor Telepon'),
             ])
             ->actions([
                 EditAction::make(),

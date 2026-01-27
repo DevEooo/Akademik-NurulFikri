@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('id_dosen')->constrained('dosen')->cascadeOnDelete();
             $table->foreignId('id_ruangan')->constrained('ruangan')->cascadeOnDelete();
 
-            $table->string('kelas'); // Contoh: TI-01, SI-Pagi
+            $table->string('kelas'); 
             $table->enum('hari', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']);
             $table->time('jam_mulai');
             $table->time('jam_selesai');
