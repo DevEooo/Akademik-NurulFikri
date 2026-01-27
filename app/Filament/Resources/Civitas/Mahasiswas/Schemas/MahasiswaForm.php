@@ -15,12 +15,6 @@ class MahasiswaForm
             ->schema([
                 Section::make('Informasi Pribadi')
                     ->schema([
-                        Select::make('user_id')
-                            ->relationship('user', 'name')
-                            ->searchable()
-                            ->preload()
-                            ->label('User Account'),
-
                         TextInput::make('nim')
                             ->required()
                             ->unique(ignoreRecord: true)

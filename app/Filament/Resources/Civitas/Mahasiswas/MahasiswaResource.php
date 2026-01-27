@@ -8,6 +8,7 @@ use App\Filament\Resources\Civitas\Mahasiswas\Pages\ListMahasiswas;
 use App\Filament\Resources\Civitas\Mahasiswas\Schemas\MahasiswaForm;
 use App\Filament\Resources\Civitas\Mahasiswas\Tables\MahasiswaTable;
 use App\Models\Mahasiswa;
+use Filament\Actions\Action;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use UnitEnum;
@@ -40,7 +41,6 @@ class MahasiswaResource extends Resource
             //
         ];
     }
-
     public static function getPages(): array
     {
         return [
