@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\ManajemenKontens\Pages;
+namespace App\Filament\Resources\KontenWebsite\ManajemenKontens\Pages;
 
-use App\Filament\Resources\ManajemenKontens\ManajemenKontenResource;
+use App\Filament\Resources\KontenWebsite\ManajemenKontens\ManajemenKontenResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 

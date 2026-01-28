@@ -8,6 +8,8 @@ use Filament\Auth\Http\Responses\Contracts\LoginResponse as LoginResponseContrac
 use Spatie\Permission\Middleware\PermissionMiddleware;
 use Spatie\Permission\Middleware\RoleMiddleware;
 use Spatie\Permission\Middleware\RoleOrPermissionMiddleware;
+use App\Http\Responses\LogoutResponse;
+use Filament\Auth\Http\Responses\Contracts\LogoutResponse as LogoutResponseContract;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,7 +18,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(LoginResponseContract::class, LoginResponse::class);
+        $this->app->bind(
+            LoginResponseContract::class, 
+            LoginResponse::class);
+            
+        $this->app->bind(
+            LogoutResponseContract::class,
+            LogoutResponse::class
+        );
     }
 
     /**

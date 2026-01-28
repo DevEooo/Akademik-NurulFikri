@@ -1,9 +1,8 @@
-# Fix Mahasiswa Field in PenilaianForm.php
+# TODO: Modify LoginResponse to redirect to welcome.blade
 
-## Tasks
-- [x] Rename Select field from 'id_mata_kuliah' to 'jadwal_kuliah_id'
-- [x] Update options function to use $get('jadwal_kuliah_id')
-- [x] Update afterStateUpdated to be on 'jadwal_kuliah_id'
-- [x] Fix options function to use correct field name
-- [x] Change reactive() to live() for schema compatibility
-- [x] Update options function to use $state instead of Get $get
+- [x] Add a new route '/welcome' in routes/web.php that returns view('welcome')
+- [x] Update app/Http/Responses/LoginResponse.php to change the default redirect to '/welcome' for users without specific roles
+
+# TODO: Change default page to welcome.blade
+
+- [ ] Change the root redirect in routes/web.php from '/admin' to '/welcome'

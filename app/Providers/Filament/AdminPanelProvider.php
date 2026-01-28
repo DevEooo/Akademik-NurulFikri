@@ -28,11 +28,13 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->id('admin')
-            ->path('admin')
+            ->path('portal')
             ->login()
+            // ->brandName('SIAK Terpadu Nurul Fikri')
             ->colors([
                 'primary' => Color::Amber,
             ])
+            ->authGuard('web')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
                 Dashboard::class,

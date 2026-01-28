@@ -25,13 +25,10 @@ class DosenPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
             ->id('dosen')
             ->path('dosen')
             ->login()
-            ->authMiddleware([
-                Authenticate::class, // Middleware standar
-            ])
+            ->authGuard('web')
             ->colors([
                 'primary' => Color::Cyan,
             ])

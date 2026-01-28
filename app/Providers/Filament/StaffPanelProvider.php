@@ -27,10 +27,11 @@ class StaffPanelProvider extends PanelProvider
         return $panel
             ->id('staff')
             ->path('staff')
-            ->login()
             ->colors([
                 'primary' => Color::Red,
             ])
+            ->login()
+            ->authGuard('web')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([

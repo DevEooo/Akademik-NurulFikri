@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\ManajemenKontens;
+namespace App\Filament\Resources\KontenWebsite\ManajemenKontens;
 
-use App\Filament\Resources\ManajemenKontens\Pages\CreateManajemenKonten;
-use App\Filament\Resources\ManajemenKontens\Pages\EditManajemenKonten;
-use App\Filament\Resources\ManajemenKontens\Pages\ListManajemenKontens;
-use App\Filament\Resources\ManajemenKontens\Schemas\ManajemenKontenForm;
-use App\Filament\Resources\ManajemenKontens\Tables\ManajemenKontensTable;
+use App\Filament\Resources\KontenWebsite\ManajemenKontens\Pages\CreateManajemenKontens;
+use App\Filament\Resources\KontenWebsite\ManajemenKontens\Pages\EditManajemenKonten;
+use App\Filament\Resources\KontenWebsite\ManajemenKontens\Pages\ListManajemenKontens;
+use App\Filament\Resources\KontenWebsite\ManajemenKontens\Schemas\ManajemenKontenForm;
+use App\Filament\Resources\KontenWebsite\ManajemenKontens\Tables\ManajemenKontensTable;
 use App\Models\ManajemenKonten;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -43,7 +43,7 @@ class ManajemenKontenResource extends Resource
     {
         return [
             'index' => ListManajemenKontens::route('/'),
-            'create' => CreateManajemenKonten::route('/create'),
+            'create' => CreateManajemenKontens::route('/create'),
             'edit' => EditManajemenKonten::route('/{record}/edit'),
         ];
     }
