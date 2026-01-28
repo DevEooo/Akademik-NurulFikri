@@ -20,7 +20,7 @@ class PenilaianResource extends Resource
 {
     protected static ?string $model = Penilaian::class;
     protected static UnitEnum|string|null $navigationGroup = 'Akademik';
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::DocumentText;
 
     public static function form(Schema $schema): Schema
     {
