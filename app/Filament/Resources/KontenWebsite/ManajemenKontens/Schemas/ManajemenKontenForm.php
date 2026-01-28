@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\KontenWebsite\Pengumuman\Schemas;
+namespace App\Filament\Resources\ManajemenKontens\Schemas;
 
 use Filament\Schemas\Schema;
 
-class PengumumanForm
+class ManajemenKontenForm
 {
     public static function configure(Schema $schema): Schema
     {
         return $schema
-            ->schema([
+            ->components([
                 //
             ]);
     }
