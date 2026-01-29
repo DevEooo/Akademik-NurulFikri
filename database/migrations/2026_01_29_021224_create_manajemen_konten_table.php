@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('manajemen_konten', function (Blueprint $table) {
+            $table->id();
+
+            $table->foreignId('id_parent')
+                ->nullable()
+                ->constrained('manajemen_konten')
+                ->nullOnDelete();
+
+            $table->string('title');
+            $table->string('slug')->unique(); 
+
+            $table->json('konten')->nullable();
+
+            $table->string('layout')->default('default'); 
+            $table->boolean('is_published')->default(true);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('manajemen_konten');
+    }
+};
