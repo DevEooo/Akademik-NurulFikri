@@ -17,7 +17,6 @@
              <img src="{{ asset('frontend/img/logo.png') }}" alt="Logo">
              <ul>
                  <li><a href="{{ route('home') }}">Beranda</a></li>
-                 <li><a href="{{ route('berita') }}">Berita</a></li>
                  <li><a href="{{ url('/portal/login') }}">Login Portal</a></li>
              </ul>
         </nav>
