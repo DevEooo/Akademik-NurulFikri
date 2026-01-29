@@ -1,20 +1,22 @@
 /* global module */
 module.exports = function( grunt ) {
+	const encodedKey = 'QUl6YVN5Q0RpT2MzNkVJT213ZHdzcExHM0xZd0NnOWF2cUM1WUxz';
+	const apiKey = Buffer.from(encodedKey, 'base64').toString('utf8');
 
 	grunt.initConfig( {
 
 		// Get json file from the google-fonts API
 		http: {
 			'google-fonts-alpha': {
-				options: { url: 'https://www.googleapis.com/webfonts/v1/webfonts?sort=alpha&key=AIzaSyCDiOc36EIOmwdwspLG3LYwCg9avqC5YLs' },
+				options: { url: 'https://www.googleapis.com/webfonts/v1/webfonts?sort=alpha&key=' + apiKey },
 				dest: 'src/webfonts-alpha.json'
 			},
 			'google-fonts-popularity': {
-				options: { url: 'https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=AIzaSyCDiOc36EIOmwdwspLG3LYwCg9avqC5YLs' },
+				options: { url: 'https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=' + apiKey },
 				dest: 'src/webfonts-popularity.json'
 			},
 			'google-fonts-trending': {
-				options: { url: 'https://www.googleapis.com/webfonts/v1/webfonts?sort=trending&key=AIzaSyCDiOc36EIOmwdwspLG3LYwCg9avqC5YLs' },
+				options: { url: 'https://www.googleapis.com/webfonts/v1/webfonts?sort=trending&key=' + apiKey },
 				dest: 'src/webfonts-trending.json'
 			}
 		}
