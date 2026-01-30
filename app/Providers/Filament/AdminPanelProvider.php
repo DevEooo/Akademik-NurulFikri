@@ -19,7 +19,6 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use App\Http\Middleware\RedirectBasedOnRole;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -30,9 +29,9 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('portal')
             ->login()
-            // ->brandName('SIAK Terpadu Nurul Fikri')
+            ->brandName('Sistem Akademik')
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Blue,
             ])
             ->authGuard('web')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')

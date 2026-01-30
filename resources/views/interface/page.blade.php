@@ -47,30 +47,30 @@
     <div class="container mx-auto px-4 py-8 grow">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
-            {{-- SIDEBAR (KIRI - Lebar 3/12) --}}
             <aside class="lg:col-span-3 hidden lg:block">
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 sticky-sidebar">
-                    <h3 class="font-bold text-gray-800 text-lg mb-4 uppercase tracking-wider text-sm border-b pb-2">Menu Navigasi</h3>
+                    <h3 class="font-bold text-gray-800 text-lg mb-4 uppercase tracking-wider text-sm border-b pb-2">
+                        Menu Navigasi
+                    </h3>
                     
-                    <ul class="space-y-2">
+                    {{-- List Utama (Parent) dengan Bullet Disc --}}
+                    <ul class="list-disc pl-5 space-y-3 text-gray-700">
                         @foreach(\App\Models\ManajemenKonten::whereNull('id_parent')->where('is_published', true)->orderBy('title')->get() as $menu)
-                            <li>
-                                {{-- Parent Menu --}}
+                            
+                            <li class="marker:text-blue-500"> {{-- Marker Parent warna Biru --}}
+                                {{-- Link Parent --}}
                                 <a href="{{ url($menu->slug) }}" 
-                                   class="flex items-center justify-between w-full px-3 py-2 rounded-lg transition {{ Request::is($menu->slug) ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-gray-600 hover:bg-gray-50' }}">
-                                   <span>{{ $menu->title }}</span>
-                                   @if($menu->children->count() > 0)
-                                     <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                                   @endif
+                                   class="hover:text-blue-600 hover:underline transition {{ Request::is($menu->slug) ? 'font-bold text-blue-700' : '' }}">
+                                    {{ $menu->title }}
                                 </a>
 
-                                {{-- Child Menu (Indentasi ke dalam) --}}
+                                {{-- Jika punya Child, buat nested list --}}
                                 @if($menu->children->count() > 0)
-                                    <ul class="ml-4 mt-1 space-y-1 border-l-2 border-gray-100 pl-2">
+                                    <ul class="list-[circle] pl-5 mt-2 space-y-1 text-sm text-gray-500">
                                         @foreach($menu->children as $child)
-                                            <li>
+                                            <li class="marker:text-gray-300"> {{-- Marker Child warna Abu --}}
                                                 <a href="{{ url($child->slug) }}" 
-                                                   class="block px-3 py-1.5 text-sm rounded-md {{ Request::is($child->slug) ? 'text-blue-600 font-semibold bg-blue-50' : 'text-gray-500 hover:text-blue-600' }}">
+                                                   class="hover:text-blue-600 transition {{ Request::is($child->slug) ? 'font-bold text-blue-600 underline' : '' }}">
                                                     {{ $child->title }}
                                                 </a>
                                             </li>
@@ -78,6 +78,7 @@
                                     </ul>
                                 @endif
                             </li>
+
                         @endforeach
                     </ul>
                 </div>
@@ -106,15 +107,32 @@
                             @foreach($page->konten as $block)
                             
                                 {{-- 1. HERO SECTION (Full Width di dalam container main) --}}
-                                @if($block['type'] === 'hero')
+                                @if(in_array($block['type'], ['hero', 'hero_banner']))
                                     <div class="relative h-64 md:h-96 w-full overflow-hidden group">
-                                        @if(isset($block['data']['image']))
-                                            <img src="{{ asset('storage/'.$block['data']['image']) }}" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                                        @php
+                                            // Support multiple field names coming from different builders
+                                            $heroImage = $block['data']['image'] ?? $block['data']['hero_image'] ?? null;
+                                            $heroHeading = $block['data']['heading'] ?? $block['data']['headline'] ?? '';
+                                            $heroSub = $block['data']['subheading'] ?? $block['data']['sub_headline'] ?? $block['data']['subheadline'] ?? '';
+                                            $heroButtonUrl = $block['data']['button_url'] ?? $block['data']['cta_url'] ?? null;
+                                            $heroButtonText = $block['data']['button_text'] ?? $block['data']['cta_text'] ?? null;
+                                        @endphp
+
+                                        @if($heroImage)
+                                            <img src="{{ asset('storage/'.$heroImage) }}" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-105">
                                             <div class="absolute inset-0 bg-black bg-opacity-40"></div>
                                         @endif
+
                                         <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 text-white">
-                                            <h2 class="text-3xl md:text-5xl font-bold mb-2">{{ $block['data']['heading'] }}</h2>
-                                            <p class="text-lg text-gray-200">{{ $block['data']['sub_headline'] ?? '' }}</p>
+                                            <h2 class="text-3xl md:text-5xl font-bold mb-2">{{ $heroHeading }}</h2>
+                                            @if($heroSub)
+                                                <p class="text-lg text-gray-200">{{ $heroSub }}</p>
+                                            @endif
+                                            @if($heroButtonUrl)
+                                                <a href="{{ $heroButtonUrl }}" class="mt-6 inline-block bg-yellow-500 text-black px-6 py-3 rounded font-bold hover:bg-yellow-400">
+                                                    {{ $heroButtonText ?? 'Learn More' }}
+                                                </a>
+                                            @endif
                                         </div>
                                     </div>
 
