@@ -21,8 +21,9 @@ class MahasiswaResource extends Resource
 {
     protected static ?string $model = Mahasiswa::class;
     protected static UnitEnum|string|null $navigationGroup = 'Civitas';
-    protected static ?string $label = "Mahasiswa";
-    protected static ?string $slug = "mahasiswa";
+    protected static ?string $navigationLabel = 'Daftar Mahasiswa';
+    protected static ?string $label = "Daftar Mahasiswa";
+    protected static ?string $slug = 'daftar-mahasiswa';
     protected static BackedEnum|string|null $navigationIcon = Heroicon::OutlinedUsers;
 
     public static function form(Schema $schema): Schema

@@ -17,10 +17,12 @@ class RuanganTable
             ->columns([
                 TextColumn::make('nama')
                     ->label('Nama Ruangan')
+                    ->alignment('center')
                     ->searchable(),
 
                 TextColumn::make('kapasitas')
                     ->label('Kapasitas')
+                    ->alignment('center')
                     ->numeric(),
             ])
             ->actions([

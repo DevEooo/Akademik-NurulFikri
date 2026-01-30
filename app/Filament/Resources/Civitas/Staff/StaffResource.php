@@ -20,8 +20,9 @@ class StaffResource extends Resource
 {
     protected static ?string $model = Staff::class;
     protected static UnitEnum|string|null $navigationGroup = 'Civitas';
-    protected static ?string $label = "Staff";
-    protected static ?string $slug = "staff";
+   protected static ?string $navigationLabel = 'Daftar Staff';
+    protected static ?string $label = "Daftar Staff";
+    protected static ?string $slug = 'daftar-staff';
     protected static BackedEnum|string|null $navigationIcon = Heroicon::OutlinedBriefcase;
 
     public static function form(Schema $schema): Schema

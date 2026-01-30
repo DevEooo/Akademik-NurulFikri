@@ -17,11 +17,13 @@ class ProgramStudiTable
             ->columns([
                 TextColumn::make('kode_prodi')
                     ->label('Kode Prodi')
-                    ->searchable(),
+                    ->searchable()
+                    ->alignment('center'),
 
                 TextColumn::make('nama_prodi')
                     ->label('Nama Program Studi')
-                    ->badge(),
+                    ->badge()
+                    ->alignment('center'),
             ])
             ->actions([
                 EditAction::make(),

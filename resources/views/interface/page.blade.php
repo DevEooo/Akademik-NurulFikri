@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <title>{{ $page->title }} - App1</title>
+    <title>{{ $page->title }} | Sistem Akademik Nurul Fikri</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         /* Agar sidebar tetap diam saat discroll (Sticky Sidebar) */
         .sticky-sidebar {
@@ -10,9 +11,12 @@
             top: 20px; /* Jarak dari atas */
             height: fit-content;
         }
+
+        [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="bg-gray-50 flex flex-col min-h-screen">
+<body class="bg-gray-50 fl
+ex flex-col min-h-screen">
 
    <nav class="bg-white shadow z-50 relative sticky top-0">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -43,56 +47,78 @@
     </div>
 </nav>
 
-    {{-- WRAPPER UTAMA: Grid 12 Kolom --}}
     <div class="container mx-auto px-4 py-8 grow">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
             <aside class="lg:col-span-3 hidden lg:block">
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 sticky-sidebar">
-                    <h3 class="font-bold text-gray-800 text-lg mb-4 uppercase tracking-wider text-sm border-b pb-2">
-                        Menu Navigasi
-                    </h3>
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 sticky-sidebar">
+        <h3 class="font-bold text-gray-800 text-lg mb-4 uppercase tracking-wider text-sm border-b pb-2">
+            Menu Navigasi
+        </h3>
+        
+        <ul class="space-y-2 text-gray-700">
+            @foreach(\App\Models\ManajemenKonten::whereNull('id_parent')->where('is_published', true)->orderBy('title')->get() as $menu)
+                
+                @php
+                    $isActiveParent = Request::is($menu->slug);
+                    $hasActiveChild = $menu->children->contains(fn($child) => Request::is($child->slug));
+                    $isOpen = $isActiveParent || $hasActiveChild ? 'true' : 'false';
+                @endphp
+
+                <li x-data="{ expanded: {{ $isOpen }} }" class="relative">
                     
-                    {{-- List Utama (Parent) dengan Bullet Disc --}}
-                    <ul class="list-disc pl-5 space-y-3 text-gray-700">
-                        @foreach(\App\Models\ManajemenKonten::whereNull('id_parent')->where('is_published', true)->orderBy('title')->get() as $menu)
+                    <div class="flex items-center justify-between w-full group">
+                      
+                        <a href="{{ url($menu->slug) }}" 
+                           class="grow py-2 hover:text-blue-600 transition {{ $isActiveParent ? 'font-bold text-blue-700' : '' }}">
+                           {{ $menu->title }}
+                        </a>
+
+                        @if($menu->children->count() > 0)
+                            <button @click="expanded = !expanded" 
+                                    class="p-1 rounded hover:bg-gray-100 text-gray-400 focus:outline-none transition-transform duration-200"
+                                    :class="expanded ? 'rotate-180 text-blue-500' : ''">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                        @endif
+                    </div>
+
+                    @if($menu->children->count() > 0)
+                        <ul x-show="expanded" 
+                            x-cloak
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 -translate-y-2"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 translate-y-0"
+                            x-transition:leave-end="opacity-0 -translate-y-2"
+                            class="pl-4 mt-1 space-y-1 border-l-2 border-gray-100 ml-2">
                             
-                            <li class="marker:text-blue-500"> {{-- Marker Parent warna Biru --}}
-                                {{-- Link Parent --}}
-                                <a href="{{ url($menu->slug) }}" 
-                                   class="hover:text-blue-600 hover:underline transition {{ Request::is($menu->slug) ? 'font-bold text-blue-700' : '' }}">
-                                    {{ $menu->title }}
-                                </a>
+                            @foreach($menu->children as $child)
+                                <li class="list-disc ml-4 marker:text-gray-300 hover:marker:text-blue-500">
+                                    <a href="{{ url($child->slug) }}" 
+                                       class="block py-1 text-sm hover:text-blue-600 hover:underline transition {{ Request::is($child->slug) ? 'font-bold text-blue-600 underline' : 'text-gray-500' }}">
+                                        {{ $child->title }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </li>
 
-                                {{-- Jika punya Child, buat nested list --}}
-                                @if($menu->children->count() > 0)
-                                    <ul class="list-[circle] pl-5 mt-2 space-y-1 text-sm text-gray-500">
-                                        @foreach($menu->children as $child)
-                                            <li class="marker:text-gray-300"> {{-- Marker Child warna Abu --}}
-                                                <a href="{{ url($child->slug) }}" 
-                                                   class="hover:text-blue-600 transition {{ Request::is($child->slug) ? 'font-bold text-blue-600 underline' : '' }}">
-                                                    {{ $child->title }}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                @endif
-                            </li>
+            @endforeach
+        </ul>
+    </div>
+</aside>
 
-                        @endforeach
-                    </ul>
-                </div>
-            </aside>
-
-            {{-- MAIN CONTENT (KANAN - Lebar 9/12) --}}
             <main class="lg:col-span-9">
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden min-h-[500px]">
                     
-                    {{-- Judul Halaman di Atas Konten --}}
                     @if($page->slug !== 'home') 
                         <div class="px-8 py-6 border-b bg-gray-50">
                             <h1 class="text-3xl font-bold text-gray-800">{{ $page->title }}</h1>
-                             {{-- Breadcrumb Opsional --}}
                              <div class="text-sm text-gray-500 mt-2">
                                 <a href="/" class="hover:underline">Beranda</a> 
                                 @if($page->parent) / <a href="{{ url($page->parent->slug) }}" class="hover:underline">{{ $page->parent->title }}</a> @endif
@@ -101,16 +127,13 @@
                         </div>
                     @endif
 
-                    {{-- LOOPING BLOK BUILDER --}}
                     <div>
                         @if($page->konten)
                             @foreach($page->konten as $block)
                             
-                                {{-- 1. HERO SECTION (Full Width di dalam container main) --}}
                                 @if(in_array($block['type'], ['hero', 'hero_banner']))
                                     <div class="relative h-64 md:h-96 w-full overflow-hidden group">
                                         @php
-                                            // Support multiple field names coming from different builders
                                             $heroImage = $block['data']['image'] ?? $block['data']['hero_image'] ?? null;
                                             $heroHeading = $block['data']['heading'] ?? $block['data']['headline'] ?? '';
                                             $heroSub = $block['data']['subheading'] ?? $block['data']['sub_headline'] ?? $block['data']['subheadline'] ?? '';
@@ -136,7 +159,6 @@
                                         </div>
                                     </div>
 
-                                {{-- 2. TEXT + IMAGE --}}
                                 @elseif($block['type'] === 'text_image')
                                     <div class="p-8">
                                         <div class="flex flex-col md:flex-row gap-8 items-start">
@@ -154,13 +176,11 @@
                                         </div>
                                     </div>
 
-                                {{-- 3. TEXT ONLY (Tambahan) --}}
                                 @elseif($block['type'] === 'text_content')
                                     <div class="p-8 prose max-w-none text-gray-700">
                                         {!! $block['data']['text'] !!}
                                     </div>
 
-                                {{-- 4. FEATURES GRID --}}
                                 @elseif($block['type'] === 'features')
                                     <div class="p-8 bg-gray-50">
                                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

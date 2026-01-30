@@ -17,13 +17,16 @@ class UsersTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->alignment('center'),
                 TextColumn::make('email')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->alignment('center'),
                 TextColumn::make('roles.name')
                     ->label('Role')
                     ->badge()
+                    ->alignment('center')
                     ->separator(', ')
                     ->formatStateUsing(fn ($state) => ucfirst(str_replace('_', ' ', $state)))
                     ->getStateUsing(function ($record) {
@@ -37,7 +40,7 @@ class UsersTable
                         'super_admin' => 'Super Admin',
                         'dosen' => 'Dosen',
                         'staff' => 'Staff',
-                    ]),
+                    ])
             ])
             ->recordActions([
                 EditAction::make(),

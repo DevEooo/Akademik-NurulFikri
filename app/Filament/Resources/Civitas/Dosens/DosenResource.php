@@ -20,8 +20,9 @@ class DosenResource extends Resource
 {
     protected static ?string $model = Dosen::class;
     protected static UnitEnum|string|null $navigationGroup = 'Civitas';
-    protected static ?string $label = "Dosen";
-    protected static ?string $slug = "dosen";
+    protected static ?string $navigationLabel = 'Daftar Dosen';
+    protected static ?string $label = "Daftar Dosen";
+    protected static ?string $slug = 'daftar-dosen';
     protected static BackedEnum|string|null $navigationIcon = Heroicon::OutlinedUserGroup;
 
     public static function form(Schema $schema): Schema

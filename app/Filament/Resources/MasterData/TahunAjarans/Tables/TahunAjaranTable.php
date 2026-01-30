@@ -19,14 +19,17 @@ class TahunAjaranTable
             ->columns([
                 TextColumn::make('tahun')
                     ->label('Tahun')
+                    ->alignment('center')
                     ->searchable(),
 
                 TextColumn::make('semester')
                     ->label('Semester')
+                    ->alignment('center')
                     ->badge(),
 
                 IconColumn::make('is_active')
                     ->label('Aktif')
+                    ->alignment('center')
                     ->boolean(),
             ])
             ->filters([
