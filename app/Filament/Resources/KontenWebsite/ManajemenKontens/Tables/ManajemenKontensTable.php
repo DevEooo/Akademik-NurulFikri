@@ -29,9 +29,9 @@ class ManajemenKontensTable
                 IconColumn::make('is_published')
                     ->boolean(),
             ])
-            ->defaultSort('parent_id')
+            ->defaultSort('id_parent')
             ->filters([
-                SelectFilter::make('parent_id')
+                SelectFilter::make('id_parent')
                     ->label('Filter Parent')
                     ->relationship('parent', 'title'),
             ]);

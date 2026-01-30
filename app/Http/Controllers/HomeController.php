@@ -3,25 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\ManajemenKonten;
-use App\Models\Page; // Gunakan Model yang dipakai di Resource ManajemenKonten
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function home()
     {
         $page = ManajemenKonten::where('slug', 'home')
                     ->where('is_published', true)
                     ->first();
  
         if (!$page) {
-            // If no home page in ManajemenKonten, create a default page
-            $page = (object) [
+            // Create a non-persisted model instance so Blade can access model-like properties
+            $page = new ManajemenKonten([
                 'title' => 'Beranda',
-                'content' => []
-            ];
+                'slug' => 'home',
+                'konten' => []
+            ]);
         }
 
-        return view('wikipress.home', compact('page'));
+        return view('interface.page', compact('page'));
+    }
+    public function show($slug)
+    {
+        $page = ManajemenKonten::where('slug', $slug)->where('is_published', true)->firstOrFail();
+        return view('interface.page', compact('page'));
     }
 }

@@ -10,21 +10,19 @@ class ManajemenKonten extends Model
     use HasFactory;
 
     protected $table = 'manajemen_konten';
-
+    protected $guarded = [];
     protected $casts = [
-        'content' => 'array', 
+        'konten' => 'array', 
         'is_published' => 'boolean',
     ];
 
-    // Relasi ke Parent (Contoh: Visi Misi punya parent Profil)
     public function parent()
     {
         return $this->belongsTo(ManajemenKonten::class, 'id_parent');
     }
 
-    // Relasi ke Child (Contoh: Profil punya child Visi Misi, Sejarah)
     public function children()
     {
-        return $this->hasMany(ManajemenKonten::class, 'id_parent');
+        return $this->hasMany(ManajemenKonten::class, 'id_parent')->orderBy('sort_order');
     }
 }

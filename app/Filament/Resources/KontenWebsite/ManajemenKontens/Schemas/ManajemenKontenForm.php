@@ -25,7 +25,7 @@ class ManajemenKontenForm
 
              Section::make('Konten Halaman')
                 ->schema([
-                    Builder::make('content')
+                    Builder::make('konten')
                         ->label('Susunan Konten')
                         ->blocks([
                             Block::make('hero_banner')
@@ -67,7 +67,7 @@ class ManajemenKontenForm
                         ->required()
                         ->unique(ignoreRecord: true),
 
-                    Select::make('parent_id')
+                    Select::make('id_parent')
                         ->label('Induk Halaman (Parent)')
                         ->relationship('parent', 'title', fn($query, $record) => 
                             $record ? $query->where('id', '!=', $record->id) : $query

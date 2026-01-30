@@ -22,9 +22,9 @@ return new class extends Migration {
             $table->string('slug')->unique(); 
 
             $table->json('konten')->nullable();
-
-            $table->string('layout')->default('default'); 
+ 
             $table->boolean('is_published')->default(true);
+            $table->integer('sort_order')->default(0);
             $table->timestamps();
         });
     }
